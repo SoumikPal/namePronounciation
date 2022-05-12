@@ -4,7 +4,7 @@ import logo from '../../resources/wellsfargo.png'
 
 function Logo() {
     return (
-        <div style={{ display: "flex", width: 150,height:150 }}>
+        <div style={{ display: "flex", width: 82,height:82 }}>
             
             <img
                 src={logo}
