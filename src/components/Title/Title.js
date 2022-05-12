@@ -4,8 +4,8 @@ import './Title.css';
 function Title() {
     return (
         <div className="Title">
-            <h1>Name Pronouncation Tool</h1><br/>
-            <h4>Your guide to effective Name Pronouncation</h4>
+            <h1>Enterprise Pronunciation Tool</h1><br/>
+            
         </div>
     )
 }
