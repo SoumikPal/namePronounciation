@@ -5,7 +5,7 @@ import Title from '../Title/Title'
 
 function Header() {
     return (
-        <div className="Header">
+        <div className="header">
             <Logo/>
             <Title/>
         </div>
