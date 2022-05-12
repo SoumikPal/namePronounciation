@@ -1,9 +1,7 @@
-.Title {
+.title {
   height: 50px;
   width: 100%;
   justify-content: center;
   align-items: baseline;
-  padding: 1em;
-  background-color: rgb(192, 45, 26);
   color: #fff;
 }

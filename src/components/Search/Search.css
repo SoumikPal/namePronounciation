@@ -1,7 +1,29 @@
-.Search{
-
-    height: 50vh; /* Magic here */
+.search{
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: row;
+}
+.search-field {
+  width: 100%;
+  padding: 10px 35px 10px 15px;
+  border-radius: 100px;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: -33px;
+}
+
+.search-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
 }
