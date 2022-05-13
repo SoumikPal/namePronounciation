@@ -1,2 +1,2 @@
-# Name Pronunciation Tool
-
+# PRONUNCIATION TOOL
+Pronunciation tool

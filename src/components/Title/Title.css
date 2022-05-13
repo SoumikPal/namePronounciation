@@ -5,3 +5,9 @@
   align-items: baseline;
   color: #fff;
 }
+
+.title h1 {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
