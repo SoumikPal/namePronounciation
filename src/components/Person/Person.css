@@ -1,3 +1,5 @@
-.person{
-    width: 150px;
+.person {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
 }

@@ -5,13 +5,13 @@ import Title from '../Title/Title'
 import Person from '../Person/Person'
 
 function Header() {
-    return (
-        <div className="header">
-            <Logo/>
-            <Title/>
-            <Person/>
-        </div>
-    )
+  return (
+    <div className="header">
+      <Logo />
+      <Title />
+      <Person/>
+    </div>
+  )
 }
 
 export default Header
