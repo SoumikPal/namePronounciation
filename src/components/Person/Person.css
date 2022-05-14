@@ -3,3 +3,10 @@
   align-items: center;
   margin-right: 10px;
 }
+
+.settings{
+  position:absolute;
+  top:80px;
+  right:10px;
+  width: 200px;
+}
