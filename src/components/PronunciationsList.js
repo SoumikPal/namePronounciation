@@ -7,10 +7,14 @@ import {
 } from "../actions/pronunciations";
 import { Link } from "react-router-dom";
 
+
+
+
 const PronunciationsList = () => {
   const [currentPronunciation, setCurrentPronunciation] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchPronunciation, setSearchPronunciation] = useState("");
+  //const [currentPronunciationAudio,setCurrentPronunciationAudio]=useState("");
 
   const pronunciations = useSelector(state => state.pronunciations);
   const dispatch = useDispatch();
@@ -18,6 +22,19 @@ const PronunciationsList = () => {
   useEffect(() => {
     dispatch(retrievePronunciation());
   }, []);
+
+  var context = new AudioContext();
+  var source = null;
+  var audioBuffer = null;
+  var base64ToBuffer = function (buffer1) {
+    var binary = window.atob(buffer1);
+    var buffer = new ArrayBuffer(binary.length);
+    var bytes = new Uint8Array(buffer);
+    for (var i = 0; i < buffer.byteLength; i++) {
+      bytes[i] = binary.charCodeAt(i) & 0xFF;
+    }
+    return buffer;
+  };
 
   const onChangeSearchPronunciation = e => {
     const searchPronunciation = e.target.value;
@@ -32,6 +49,8 @@ const PronunciationsList = () => {
   const setActivePronunciation = (pronunciation, index) => {
     setCurrentPronunciation(pronunciation);
     setCurrentIndex(index);
+    //setCurrentPronunciationAudio(pronunciation.audio);
+    //setTimeout(initAudio, 10000);
   };
 
   const removeAllPronunciations = () => {
@@ -50,9 +69,38 @@ const PronunciationsList = () => {
     dispatch(findPronunciationByNames(searchPronunciation));
   };
 
-  const playAudio=()=>{
-    const audioEl = document.getElementsByClassName("audio-element")[0];
-    audioEl.play();
+  /*const initAudio=()=>{
+    console.log('Initializing Audio');
+    console.log(currentPronunciationAudio);
+    var audioFromString = base64ToBuffer(currentPronunciationAudio);
+    context.decodeAudioData(audioFromString, function (buffer) {
+      audioBuffer = buffer;
+    }, function (e) {
+      console.log('Error decoding file', e);
+    });
+
+  }*/
+
+  function stopSound() {
+    if (source) {
+      source.stop(0);
+    }
+  }
+  
+  const playAudio = (audio)=>{
+    console.log('Initializing Audio');
+    console.log(audio);
+    var audioFromString = base64ToBuffer(audio);
+    context.decodeAudioData(audioFromString, function (buffer) {
+      audioBuffer = buffer;
+    }, function (e) {
+      console.log('Error decoding file', e);
+    });
+    source = context.createBufferSource();
+    source.buffer = audioBuffer;
+    source.loop = false;
+    source.connect(context.destination);
+    source.start(0); // Play immediately.
   }
 
   return (
@@ -119,12 +167,9 @@ const PronunciationsList = () => {
               {currentPronunciation.pronunciation}
             </div>
             <div>
-              <button onClick={playAudio}>
+              <button onClick={() => playAudio(currentPronunciation.audio)}>
                 <span>Play Audio</span>
               </button>
-              <audio className="audio-element">
-                <source src="https://assets.coderrocketfuel.com/pomodoro-times-up.mp3"></source>
-              </audio>
             </div>
 
 
