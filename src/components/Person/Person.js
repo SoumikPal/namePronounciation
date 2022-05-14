@@ -53,7 +53,7 @@ function Person() {
     <div className="person"  >
       <h6 style={{ 'color': "white" }}>Welcome {window.firstName} {window.lastName}</h6>
       <AccountBoxRoundedIcon onClick={onToggle} fontSize="large" style={{ 'color': "white" }} />
-      {showPreference ? <Results /> : null}
+      <Results /> 
       </div>
     
   )
