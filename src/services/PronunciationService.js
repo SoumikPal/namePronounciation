@@ -1,7 +1,7 @@
 import http from "../http-common";
 
 const getAll = () => {
-  return http.get("/pronunciations");
+  return http.get("https://namepronunciationserviceptmvn.azurewebsites.net/api/allPronunciations");
 };
 
 const get = id => {
