@@ -30,7 +30,7 @@ export const retrievePronunciation = () => async (dispatch) => {
 
     dispatch({
       type: RETRIEVE_PRONUNCIATIONS,
-      payload: res.data,
+      payload: res.data.pronunciations,
     });
   } catch (err) {
     console.log(err);
