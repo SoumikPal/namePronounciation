@@ -6,6 +6,11 @@ import {
   deleteAllPronunciations,
 } from "../actions/pronunciations";
 import { Link } from "react-router-dom";
+import { FormControl } from "@material-ui/core";
+import { InputLabel } from "@material-ui/core";
+import { Select } from "@material-ui/core";
+import { MenuItem } from "@material-ui/core";
+import { Language } from "@material-ui/icons";
 
 
 
@@ -17,6 +22,17 @@ const PronunciationsList = () => {
   //const [currentPronunciationAudio,setCurrentPronunciationAudio]=useState("");
   const [searchShow, setSearchShow] = useState(false); 
   const [disable, setDisable] = React.useState(true);
+  const [gender, setGender] = React.useState('');
+
+  const handleChangevoice = (event) => {
+    setGender(event.target.value);
+  };
+
+  const [voiceregion, setVoiceregion] = React.useState('');
+
+  const handleChangevoiceregion = (event) => {
+    setVoiceregion(event.target.value);
+  };
 
 
   const pronunciations = useSelector(state => state.pronunciations);
@@ -173,7 +189,7 @@ const PronunciationsList = () => {
 
   const findPronunciationByName = () => {
     refreshData();
-    dispatch(findPronunciationByNames(searchPronunciation));
+    dispatch(findPronunciationByNames(searchPronunciation, gender, voiceregion));
   };
 
   /*const initAudio=()=>{
@@ -233,10 +249,36 @@ const PronunciationsList = () => {
         </div>
       </div>
       <div className="col-md-6">
-        Standard Pronunciations
+        Standard Pronunciations(Please Choose Voice and Language)
         <button disabled ={disable} onClick={() => playAudio(defaultpronunciations)}>
           <span>Play Audio</span>
         </button>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Voice</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={gender}
+            label="gender"
+            onChange={handleChangevoice}
+          >
+            <MenuItem value="Male">Male</MenuItem>
+            <MenuItem value="Female">Female</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Language</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={voiceregion}
+            label="language"
+            onChange={handleChangevoiceregion}
+          >
+            <MenuItem value="en-US">ENGLISH-US</MenuItem>
+            <MenuItem value="hi-IN">HINDI-INDIA</MenuItem>
+          </Select>
+        </FormControl>
       </div>
       <div className="col-md-12">
         <h4>People</h4></div>
