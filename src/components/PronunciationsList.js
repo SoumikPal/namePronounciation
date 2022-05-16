@@ -17,6 +17,7 @@ const PronunciationsList = () => {
   //const [currentPronunciationAudio,setCurrentPronunciationAudio]=useState("");
 
   const pronunciations = useSelector(state => state.pronunciations);
+  const defaultpronunciations=useSelector(state=>state.defaultpronunciations);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -105,7 +106,7 @@ const PronunciationsList = () => {
 
   return (
     <div className="list row">
-      <div className="col-md-8">
+      <div className="col-md-6">
         <div className="input-group mb-3">
           <input
             type="text"
@@ -126,7 +127,14 @@ const PronunciationsList = () => {
         </div>
       </div>
       <div className="col-md-6">
-        <h4>Pronunciations List</h4>
+        Standard Pronunciations
+        <button onClick={() => playAudio(defaultpronunciations)}>
+          <span>Play Audio</span>
+        </button>
+
+      </div>
+      <div className="col-md-6">
+        <h4>Employee List</h4>
 
         <ul className="list-group">
           {pronunciations &&
@@ -164,10 +172,10 @@ const PronunciationsList = () => {
               <label>
                 <strong>Pronunciation:</strong>
               </label>{" "}
-              {currentPronunciation.pronunciation}
+              {currentPronunciation.defaultPronunciation}
             </div>
             <div>
-              <button onClick={() => playAudio(currentPronunciation.audio)}>
+              <button onClick={() => playAudio(currentPronunciation.defaultAudio)}>
                 <span>Play Audio</span>
               </button>
             </div>
