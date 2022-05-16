@@ -81,9 +81,9 @@ export const deleteAllPronunciations = () => async (dispatch) => {
   }
 };
 
-export const findPronunciationByNames = (name) => async (dispatch) => {
+export const findPronunciationByNames = (name, gender, voiceregion) => async (dispatch) => {
   try {
-    const res = await PronunciationDataService.findPronunciationByNames({name});
+    const res = await PronunciationDataService.findPronunciationByNames({name,gender,voiceregion});
 
     dispatch({
       type: RETRIEVE_DEFAULT_PRONUNCIATIONS,
