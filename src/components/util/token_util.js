@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function getTokenOrRefresh() {
   try {
-    const res = await axios.get('https://namepronunciationserviceptmvn.azurewebsites.net/api/token');
+    const res = await axios.post('https://namepronunciationserviceptmvn.azurewebsites.net/api/token');
     const token = res.data;
     const region = 'eastus';
 
