@@ -16,6 +16,8 @@ const PronunciationsList = () => {
   const [searchPronunciation, setSearchPronunciation] = useState("");
   //const [currentPronunciationAudio,setCurrentPronunciationAudio]=useState("");
   const [searchShow, setSearchShow] = useState(false); 
+  const [disable, setDisable] = React.useState(true);
+
 
   const pronunciations = useSelector(state => state.pronunciations);
   const defaultpronunciations=useSelector(state=>state.defaultpronunciations);
@@ -50,7 +52,6 @@ const PronunciationsList = () => {
       return (
         <div className="list row">
         <div className="col-md-6">
-        <h4>Employee List</h4>
 
         <ul className="list-group">
           {filteredResult &&
@@ -136,6 +137,7 @@ const PronunciationsList = () => {
     const searchPronunciation = e.target.value;
     setSearchPronunciation(searchPronunciation);
     setCurrentPronunciation(null);
+    setDisable(true);
     setCurrentIndex(-1);
     if (e.target.value === "") {
       setSearchShow(false);
@@ -148,6 +150,7 @@ const PronunciationsList = () => {
   const refreshData = () => {
     setCurrentPronunciation(null);
     setCurrentIndex(-1);
+    setDisable(false);
   };
 
   const setActivePronunciation = (pronunciation, index) => {
@@ -231,11 +234,13 @@ const PronunciationsList = () => {
       </div>
       <div className="col-md-6">
         Standard Pronunciations
-        <button onClick={() => playAudio(defaultpronunciations)}>
+        <button disabled ={disable} onClick={() => playAudio(defaultpronunciations)}>
           <span>Play Audio</span>
         </button>
-
       </div>
+      <div className="col-md-12">
+        <h4>People</h4></div>
+
       {searchList()}
     </div>
   );
