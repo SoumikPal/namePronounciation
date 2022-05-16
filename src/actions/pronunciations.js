@@ -4,6 +4,7 @@ import {
   UPDATE_PRONUNCIATION,
   DELETE_PRONUNCIATION,
   DELETE_ALL_PRONUNCIATIONS,
+  RETRIEVE_DEFAULT_PRONUNCIATIONS
 } from "./types";
 
 import PronunciationDataService from "../services/PronunciationService";
@@ -30,7 +31,7 @@ export const retrievePronunciation = () => async (dispatch) => {
 
     dispatch({
       type: RETRIEVE_PRONUNCIATIONS,
-      payload: res.data.pronunciations,
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);
@@ -82,10 +83,10 @@ export const deleteAllPronunciations = () => async (dispatch) => {
 
 export const findPronunciationByNames = (name) => async (dispatch) => {
   try {
-    const res = await PronunciationDataService.findPronunciationByNames(name);
+    const res = await PronunciationDataService.findPronunciationByNames({name});
 
     dispatch({
-      type: RETRIEVE_PRONUNCIATIONS,
+      type: RETRIEVE_DEFAULT_PRONUNCIATIONS,
       payload: res.data,
     });
   } catch (err) {
